@@ -10,7 +10,10 @@ import { RouterLink } from '@angular/router';
   imports: [CommonModule, RouterLink, HlmButtonDirective],
   template: `
     <div class="flex flex-row justify-between items-center">
-      <p routerLink="/home">HOME</p>
+      <button routerLink="/home" class="text-foreground" >
+        logo
+      </button>
+      
       <div *ngIf="authService.currentUserSig() === null" class="grid grid-cols-2 gap-2">
         <a routerLink="/login" variant='outline' hlmBtn>Login</a>
         <a routerLink="/signup" hlmBtn>Sign-up</a>
