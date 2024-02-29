@@ -29,21 +29,24 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
     ReactiveFormsModule
   ],
   template: `
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-80" hlmCard>
-    <div hlmCardHeader>
-      <h3 hlmCardTitle>Login</h3>
-      <p hlmCardDescription>Use your email and password</p>
-    </div>
-    <p hlmCardContent>
-        <label class="block" hlmLabel>Email</label>
-        <input type="email" formControlName="email" class="mt-1.5 w-full" placeholder="Enter your email" hlmInput />
-        <label class="block" hlmLabel>Password</label>
-        <input type="password" formControlName="password" class="mt-1.5 w-full" placeholder="Enter your password" hlmInput />
-    </p>
-    <div hlmCardFooter class="block">
-        <button class="w-full" type="submit" [disabled]="!loginForm.valid" hlmBtn>Login</button>
-    </div>
-  </form>
+  <div class="h-full flex flex-col justify-center">
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-80" hlmCard>
+      <div hlmCardHeader>
+        <h3 hlmCardTitle>Login</h3>
+        <p hlmCardDescription>Use your email and password</p>
+      </div>
+      <p hlmCardContent>
+          <label class="block" hlmLabel>Email</label>
+          <input type="email" formControlName="email" class="mt-1.5 w-full" placeholder="Enter your email" hlmInput />
+          <label class="block" hlmLabel>Password</label>
+          <input type="password" formControlName="password" class="mt-1.5 w-full" placeholder="Enter your password" hlmInput />
+      </p>
+      <div hlmCardFooter class="block">
+          <button class="w-full" type="submit" [disabled]="!loginForm.valid" hlmBtn>Login</button>
+      </div>
+    </form>
+  </div>
   `,
 })
 export class LoginComponent {

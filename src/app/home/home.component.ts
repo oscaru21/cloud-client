@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [DashboardComponent],
   template: `
-    <p>
-      home works!
-    </p>
+    <app-dashboard class="w-full h-full mx-auto"></app-dashboard>
   `,
-  styles: ``
+  styles: `
+   :host(app-home) { width:100% }
+ `
 })
 export class HomeComponent {
 

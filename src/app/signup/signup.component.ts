@@ -29,25 +29,27 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
         ReactiveFormsModule
     ],
     template: `
-  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="w-80" hlmCard>
-    <div hlmCardHeader>
-      <h3 hlmCardTitle>Sign-up</h3>
-      <p hlmCardDescription>Use your email and password</p>
-    </div>
-    <p hlmCardContent>
-        <label class="block" hlmLabel>Name</label>
-        <input type="text" formControlName="name" class="mt-1.5 w-full" placeholder="Enter your full name" hlmInput />
+    <div class="h-full flex flex-col justify-center">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="w-80" hlmCard>
+        <div hlmCardHeader>
+        <h3 hlmCardTitle>Sign-up</h3>
+        <p hlmCardDescription>Use your email and password</p>
+        </div>
+        <p hlmCardContent>
+            <label class="block" hlmLabel>Name</label>
+            <input type="text" formControlName="name" class="mt-1.5 w-full" placeholder="Enter your full name" hlmInput />
 
-        <label class="block" hlmLabel>Email</label>
-        <input type="email" formControlName="email" class="mt-1.5 w-full" placeholder="Enter your email" hlmInput />
+            <label class="block" hlmLabel>Email</label>
+            <input type="email" formControlName="email" class="mt-1.5 w-full" placeholder="Enter your email" hlmInput />
 
-        <label class="block" hlmLabel>Password</label>
-        <input type="password" formControlName="password" class="mt-1.5 w-full" placeholder="Enter your password" hlmInput />
-    </p>
-    <div hlmCardFooter class="block">
-        <button class="w-full" type="submit" [disabled]="!signupForm.valid" hlmBtn>Sign-up</button>
+            <label class="block" hlmLabel>Password</label>
+            <input type="password" formControlName="password" class="mt-1.5 w-full" placeholder="Enter your password" hlmInput />
+        </p>
+        <div hlmCardFooter class="block">
+            <button class="w-full" type="submit" [disabled]="!signupForm.valid" hlmBtn>Sign-up</button>
+        </div>
+    </form>
     </div>
-  </form>
   `,
 })
 export class SignupComponent {
