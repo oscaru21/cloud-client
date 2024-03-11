@@ -107,7 +107,9 @@ import { RouterLink } from '@angular/router';
       </hlm-menu>
     </ng-template>
   `,
-  styles: ``
+  styles: `
+  :host(app-dashboard) { width:100% }
+`
 })
 export class DashboardComponent {
   transcripts: any = []

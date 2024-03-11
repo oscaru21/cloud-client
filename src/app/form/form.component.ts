@@ -10,7 +10,12 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
   standalone: true,
   imports: [BrnSelectImports, HlmSelectImports, HlmLabelDirective, HlmInputDirective, HlmButtonDirective],
   template: `
-    <div class="h-full flex flex-col mx-4 ">
+    <div class="w-full sm:w-[70%] h-full mx-auto ">
+      <div class="flex flex-col mx-4">
+      <label class="my-4 mb-1.5 block" hlmLabel>
+        File Name
+      </label>
+      <input class="w-full my-2" hlmInput type="text" placeholder="Enter File Name"/>
       <brn-select class="w-full my-4" placeholder="To Language">
         <hlm-select-trigger class="w-full my-2">
           <hlm-select-value />
@@ -21,6 +26,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
           <hlm-option value="fr">French</hlm-option>
         </hlm-select-content>
       </brn-select>
+    
     <label class="my-4 mb-1.5 block" hlmLabel>
       File
     </label>
@@ -31,6 +37,7 @@ import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
       </audio>
     }
     <button class="w-full my-4" hlmBtn>Upload</button>
+      </div>
     </div>
   `,
   styles: `

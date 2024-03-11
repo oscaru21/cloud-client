@@ -6,7 +6,6 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
   standalone: true,
   imports: [DashboardComponent],
   template: `
-    <app-dashboard class="w-full h-full mx-auto"></app-dashboard>
   `,
   styles: `
    :host(app-home) { width:100% }
