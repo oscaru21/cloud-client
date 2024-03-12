@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import {
   HlmCardContentDirective,
@@ -11,6 +12,10 @@ import {
 } from '@spartan-ng/ui-card-helm';
 import { HlmInputDirective } from '@spartan-ng/ui-input-helm';
 import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
+
+import { AuthenticationDetails, CognitoUser, CognitoUserAttribute, CognitoUserPool } from 'amazon-cognito-identity-js';
+import { environment } from '../../environments/environment.development';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -51,8 +56,9 @@ import { HlmLabelDirective } from '@spartan-ng/ui-label-helm';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  authService = inject(AuthService);
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -62,8 +68,36 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      console.log(`logged in ${email}`)
-      // this.authService.login(username, password);
+
+      let poolData = {
+        UserPoolId: environment.userPoolId, // Your user pool id here
+        ClientId: environment.clientId, // Your client id here
+      };
+
+      let userPool = new CognitoUserPool(poolData);
+
+      let userData = {
+        Username: email,
+        Pool: userPool,
+      }
+
+      let authData = {
+        Username: email,
+        Password: password,
+      }
+      let cognitoUser = new CognitoUser(userData);
+      let authenticationDetails = new AuthenticationDetails(authData);
+      //login
+      cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: (result) => {
+          console.log();
+          this.router.navigate(['/dashboard']);
+        },
+        onFailure: (err) => {
+          console.log(err);
+        }
+      })
+
     }
   }
 }

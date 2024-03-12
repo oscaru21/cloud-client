@@ -14,25 +14,7 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   authService = inject(AuthService);
-  // http = inject(HttpClient);
 
   ngOnInit(): void {
-    this.authService.currentUserSig.set({
-      name: 'Oscar',
-      email: 'test@test.com',
-      token: "fake-token"
-    });
-    console.log(this.authService.currentUserSig())
-    // this.http
-    //   .get<{ user: User }>('https://api.realworld.io/api/user')
-    //   .subscribe({
-    //     next: (response) => {
-    //       console.log('response', response);
-    //       this.authService.currentUserSig.set(response.user);
-    //     },
-    //     error: () => {
-    //       this.authService.currentUserSig.set(null);
-    //     },
-    //   });
   }
 }

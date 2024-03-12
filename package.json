@@ -33,11 +33,12 @@
     "@spartan-ng/ui-select-brain": "^0.0.1-alpha.336",
     "@spartan-ng/ui-separator-brain": "0.0.1-alpha.335",
     "@spartan-ng/ui-toggle-brain": "0.0.1-alpha.335",
+    "amazon-cognito-identity-js": "^6.3.12",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "^0.14.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.9",

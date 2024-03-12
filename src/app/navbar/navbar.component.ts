@@ -2,7 +2,9 @@ import { Component, inject } from '@angular/core';
 import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { environment } from '../../environments/environment.development';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 @Component({
   selector: 'app-navbar',
@@ -11,14 +13,14 @@ import { RouterLink } from '@angular/router';
   template: `
     <div class="flex flex-row justify-between items-center">
       <button routerLink="/home" class="text-foreground" >
-        logo
+        <img src="/assets/logo.png" alt="logo" class="w-8 h-8" />
       </button>
       
-      <div *ngIf="authService.currentUserSig() === null" class="grid grid-cols-2 gap-2">
+      <div *ngIf="!authService.isAuth()" class="grid grid-cols-2 gap-2">
         <a routerLink="/login" variant='outline' hlmBtn>Login</a>
         <a routerLink="/signup" hlmBtn>Sign-up</a>
       </div>
-      <div *ngIf="authService.currentUserSig()">
+      <div *ngIf="authService.isAuth()">
         <span (click)="logout()" variant='outline' hlmBtn>Logout</span>
       </div>
 </div>
@@ -28,9 +30,18 @@ import { RouterLink } from '@angular/router';
 export class NavbarComponent {
   authService = inject(AuthService);
 
+  constructor(private router: Router) { }
+
   logout(): void {
-    console.log('logout');
-    localStorage.setItem('token', '');
+    let poolData = {
+      UserPoolId: environment.userPoolId, // Your user pool id here
+      ClientId: environment.clientId, // Your client id here
+    };
+
+    let userPool = new CognitoUserPool(poolData);
+    let currentUser = userPool.getCurrentUser();
+    currentUser!.signOut();
     this.authService.currentUserSig.set(null);
+    this.router.navigate(['/home']);
   }
 }
